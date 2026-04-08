@@ -1,10 +1,15 @@
-translations = {
+MESSAGES = {
     # --- СТАРТ ---
-# Пример того, как сделать заголовки красивыми
-"header_main": { "🏠 <b>FAST HOME | TBILISI</b>\n"
-                 "━━━━━━━━━━━━━━━━━━━━\n"
-                 },
-"header_step": "<b>Шаг {n} из 7</b>\n",
+    "header_main": {
+        "ru": "🏠 <b>FAST HOME | TBILISI</b>\n━━━━━━━━━━━━━━━━━━━━\n",
+        "en": "🏠 <b>FAST HOME | TBILISI</b>\n━━━━━━━━━━━━━━━━━━━━\n",
+        "ka": "🏠 <b>FAST HOME | TBILISI</b>\n━━━━━━━━━━━━━━━━━━━━\n",
+    },
+    "header_step": {
+        "ru": "<b>Шаг {n} из 7</b>\n",
+        "en": "<b>Step {n} of 7</b>\n",
+        "ka": "<b>ნაბიჯი {n} 7-დან</b>\n",
+    },
 
 "welcome_intro": {
         "ru": (
@@ -378,12 +383,34 @@ translations = {
         "ka": "📨 <b>ახალი შეტყობინება მომხმარებლისგან!</b>\n",
     },
 
+    "pay_tbc_text": {
+        "ru": (
+            "💳 <b>Оплата картой (TBC Bank)</b>\n\n"
+            "Сумма: <b>{price}</b>\n\n"
+            "Нажми кнопку ниже — откроется защищённая страница оплаты. "
+            "После успешной оплаты статус обновится автоматически (обычно в течение минуты)."
+        ),
+        "en": (
+            "💳 <b>Card payment (TBC Bank)</b>\n\n"
+            "Amount: <b>{price}</b>\n\n"
+            "Tap the button below to open the secure payment page. "
+            "Your status will update automatically after a successful payment."
+        ),
+        "ka": (
+            "💳 <b>ბარათით გადახდა (TBC Bank)</b>\n\n"
+            "თანხა: <b>{price}</b>\n\n"
+            "დააჭირეთ ღილაკს — გაიხსნება დაცული გადახდის გვერდი. "
+            "წარმატების შემდეგ სტატუსი ავტომატურად განახლდება."
+        ),
+    },
+    "btn_pay_tbc": {
+        "ru": "💳 Оплатить картой (TBC)",
+        "en": "💳 Pay with card (TBC)",
+        "ka": "💳 გადახდა ბარათით (TBC)",
+    },
+    "payment_create_error": {
+        "ru": "Не удалось создать платёж. Попробуйте позже или напишите администратору.",
+        "en": "Could not create payment. Try again later or contact support.",
+        "ka": "გადახდის შექმნა ვერ მოხერხდა. სცადეთ მოგვიანებით ან დაუკავშირდით მხარდაჭერას.",
+    },
 }
-
-def t(key: str, lang: str, **kwargs) -> str:
-    lang = lang.lower() if lang else "ru"
-
-    text = translations.get(key, {}).get(lang, key)
-    if kwargs:
-        return text.format(**kwargs)
-    return text

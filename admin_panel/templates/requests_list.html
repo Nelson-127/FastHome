@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admin — заявки</title>
+  <link rel="stylesheet" href="/admin/static/style.css"/>
+</head>
+<body>
+<header><h1>Заявки</h1><p><a href="/docs">OpenAPI</a></p></header>
+<table>
+  <thead>
+    <tr><th>ID</th><th>TG</th><th>Статус</th><th>Район</th><th>Бюджет</th><th></th></tr>
+  </thead>
+  <tbody>
+  {% for row in rows %}
+    <tr>
+      <td>{{ row.id }}</td>
+      <td>{% if row.user %}{{ row.user.telegram_id }}{% else %}—{% endif %}</td>
+      <td>{{ row.status.value }}</td>
+      <td>{{ row.district }}</td>
+      <td>{{ row.budget }}</td>
+      <td><a href="/admin/ui/requests/{{ row.id }}">Открыть</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>

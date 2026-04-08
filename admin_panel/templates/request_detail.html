@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Заявка #{{ r.id }}</title>
+  <link rel="stylesheet" href="/admin/static/style.css"/>
+</head>
+<body>
+<header>
+  <p><a href="/admin/ui/">← Назад</a></p>
+  <h1>Заявка #{{ r.id }}</h1>
+</header>
+
+<section>
+  <p><b>Статус:</b> {{ r.status.value }}</p>
+  <p><b>Район:</b> {{ r.district }}</p>
+  <p><b>Бюджет:</b> {{ r.budget }} GEL</p>
+  <p><b>Комнаты:</b> {{ r.rooms }}</p>
+  <p><b>Контакт:</b> {{ r.contact }}</p>
+  {% if r.user %}
+  <p><b>Telegram ID:</b> {{ r.user.telegram_id }}</p>
+  {% endif %}
+</section>
+
+<h2>Кандидаты (matching)</h2>
+<table>
+  <thead><tr><th>Цена</th><th>Район</th><th>Комн.</th><th>Источник</th><th>Ссылка</th></tr></thead>
+  <tbody>
+  {% for m in matches %}
+    <tr>
+      <td>{{ m.price }}</td>
+      <td>{{ m.district or "—" }}</td>
+      <td>{{ m.rooms or "—" }}</td>
+      <td>{{ m.source.value if m.source else m.source }}</td>
+      <td><a href="{{ m.url }}" target="_blank" rel="noopener">открыть</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h2>Сообщение пользователю</h2>
+<p>Используйте API: <code>POST {{ api_base }}/admin/messages</code> (Basic auth) с JSON
+<code>{"telegram_id": ..., "text": "..."}</code></p>
+
+</body>
+</html>
